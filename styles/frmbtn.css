@@ -1,0 +1,112 @@
+
+/* ================================== */
+/*Styles for buttons excluding send email btn*/
+/*===================================*/
+
+/* Styling for action buttons */
+.action-button {
+    background-color: #4CAF50;
+    /* Green background */
+    color: white;
+    /* White text */
+    border: none;
+    /* No border */
+    padding: 5px 10px;
+    /* Padding */
+    text-align: center;
+    /* Centered text */
+    text-decoration: none;
+    /* No underline */
+    display: inline-block;
+    /* Inline-block for horizontal alignment */
+    font-size: 14px;
+    /* Font size */
+    margin: 2px;
+    /* Margin between buttons */
+    cursor: pointer;
+    /* Pointer cursor on hover */
+    border-radius: 5px;
+    /* Rounded corners */
+}
+
+.action-button.delete-button {
+    background-color: #f44336;
+    /* Red background for delete button */
+}
+
+/* Ensuring buttons are displayed in a row */
+td>.action-button {
+    display: inline-block;
+}
+
+.row {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-left: 30px;
+    margin-bottom: 25px;
+    margin-top: 25px;
+
+
+}
+
+.pull-left {
+    background: #677C1A;
+    color: #FFFFFF;
+    border: none;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 2px;
+    margin-left: 50px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.pull-left-email {
+    margin-left: 50px;
+    background: #65C783;
+    color: #FFFFFF;
+    height: 35px;
+    width: 120px;
+    border: none;
+    border-radius: 5px;
+}
+
+.pull-left-logout {
+    background: #C12303;
+    color: #FFFFFF;
+    border: none;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 2px;
+    margin-left: 50px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+
+/* ----*/
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    /* Space between buttons */
+}
+
+
+.action-button.delete-button {
+    background-color: #f44336;
+    /* Red */
+}
+
+.action-button.edit-button {
+    background-color: #008CBA;
+    /* Blue */
+}
