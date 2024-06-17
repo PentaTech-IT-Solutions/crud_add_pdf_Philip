@@ -291,10 +291,53 @@ input[type="submit"]:hover {
         </form>
     </div>
 </div>
-<!-- End of Email modal form -->
+<!-- End of modal form -->
 
 
-
+<!-- Edit team member modal -->
+<div id="contactModal3" class="modal">
+    <div class="modal-content">
+        <span class="close" id="closeModal3">&times;</span>
+        <div class="title">Edit Team Member</div>
+        <div class="content">
+            <form method="POST" action="edit_member_handler.php" enctype="multipart/form-data">
+                <div class="user-details">
+                    <input type="hidden" name="member_id" value="">
+                    <div class="input-box">
+                        <span class="details">First Name</span>
+                        <input type="text" name="firstname" value="" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Last Name</span>
+                        <input type="text" name="lastname" value="" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Position</span>
+                        <input type="text" name="position" value="" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Department</span>
+                        <input type="text" name="department" value="" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">About</span>
+                        <textarea name="about" required></textarea>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Profile Picture</span>
+                        <input type="file" name="profile_picture">
+                    </div>
+                    <div>
+                        <img src="" alt="Current Profile Picture" width="150">
+                    </div>
+                </div>
+                <div class="button">
+                    <input type="submit" value="Update" name="update_member">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
@@ -382,6 +425,50 @@ input[type="submit"]:hover {
             }
         }
         //====End of modal element for add new member=====
+
+
+
+         //========================================================
+
+         //=======Get modal element for Edit member========
+         // Function to open the Edit modal and pass the member_id
+function openEditModal(member_id) {
+    var modal3 = document.getElementById("contactModal3");
+    var member_id_input = document.querySelector("input[name='member_id']");
+    member_id_input.value = member_id;
+
+    // Fetch member details via AJAX or directly set in the form (if preloaded)
+    fetch('get_member.php?member_id=' + member_id)
+        .then(response => response.json())
+        .then(data => {
+            // Set form fields with fetched data
+            document.querySelector("input[name='firstname']").value = data.firstname;
+            document.querySelector("input[name='lastname']").value = data.lastname;
+            document.querySelector("input[name='position']").value = data.position;
+            document.querySelector("input[name='department']").value = data.department;
+            document.querySelector("textarea[name='about']").value = data.about;
+            document.querySelector("img[src]").src = data.image_url; // Update the current profile picture
+
+            modal3.style.display = "block"; // Show the modal
+        })
+        .catch(error => console.error('Error fetching member data:', error));
+}
+
+// Close the modal for Edit member
+var closeModalButton3 = document.getElementById("closeModal3");
+closeModalButton3.onclick = function() {
+    var modal3 = document.getElementById("contactModal3");
+    modal3.style.display = "none"; // Hide the modal
+}
+
+window.onclick = function(event) {
+    var modal3 = document.getElementById("contactModal3");
+    if (event.target == modal3) {
+        modal3.style.display = "none"; // Hide the modal
+    }
+}
+
+        //====End of modal element for Edit member=====
         </script>
     </div>
 </body>

@@ -1,5 +1,11 @@
 <?php
 
+require_once __DIR__ . '/vendor/autoload.php'; // Adjust the path as needed
+
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
+
 // Import PHPMailer classes into the global namespace
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -15,14 +21,14 @@ if (isset($_POST["send"])) {
     $mail = new PHPMailer(true);
 
     try {
-        // Server settings
-        $mail->isSMTP();                                // Send using SMTP
-        $mail->Host       = 'smtp.gmail.com';           // Set the SMTP server to send through
-        $mail->SMTPAuth   = true;                       // Enable SMTP authentication
-        $mail->Username   = 'philipab896@gmail.com';    // SMTP username (your email)
-        $mail->Password   = 'jkperdfheyudwcwo';         // SMTP password
-        $mail->SMTPSecure = 'ssl';                      // Enable implicit SSL encryption
-        $mail->Port       = 465;                        // TCP port to connect to
+       // Server settings
+       $mail->isSMTP();                                // Send using SMTP
+       $mail->Host       = getenv('SMTP_HOST');        // Set the SMTP server to send through
+       $mail->SMTPAuth   = true;                       // Enable SMTP authentication
+       $mail->Username   = getenv('SMTP_USERNAME');    // SMTP username (your email)
+       $mail->Password   = getenv('SMTP_PASSWORD');    // SMTP password
+       $mail->SMTPSecure = 'ssl';                      // Enable implicit SSL encryption
+       $mail->Port       = 465;                        // TCP port to connect to
 
         // Recipients
         $mail->setFrom($_POST["email"], $_POST["name"]); // Sender Email and name
